@@ -31,7 +31,7 @@ public class 소수찾기 {
         prime_number[0] = true;
         prime_number[1] = true;
         // 에라토스테네스의 체를 이용하여 소수 배열 
-        for (int i = 2; i < prime_number.length; i++) {
+        for (int i = 2; i <= Math.sqrt(prime_number.length); i++) {
 			if(!prime_number[i]) {
 				for (int j = i+i; j < prime_number.length; j=j+i) {
 					prime_number[j] = true;
