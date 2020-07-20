@@ -1,0 +1,10 @@
+package programmers;
+
+public class 최솟값만들기 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
