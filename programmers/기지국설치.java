@@ -7,6 +7,7 @@ public class 기지국설치 {
 
 	}
 	public int solution(int n, int[] stations, int w) {
+		//40분
 	       int answer = 0;
 			int l = 2*w+1;
 			int curr = 1;
