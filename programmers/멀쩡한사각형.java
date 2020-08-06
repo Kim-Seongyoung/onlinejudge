@@ -9,8 +9,6 @@ public class 멀쩡한사각형 {
 	static public long solution(int w, int h) {
         int max = Math.max(w, h);
         int min = Math.min(w, h);
-        int tempa = max;
-        int tempb = min;
         while(min!=0) {
         	int temp = max%min;
         	max = min;
