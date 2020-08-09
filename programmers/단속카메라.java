@@ -8,7 +8,7 @@ public class 단속카메라 {
 
 	}
 	public int solution(int[][] routes) {
-        int answer = 1;
+        // 가장 왼쪽에 있는 나간 지점 순으로 정렬 후 같으면 가장 왼쪽에 있는 들어온 지점순으로 정렬
         PriorityQueue<Car> pq = new PriorityQueue<>(new Comparator<Car>() {
 
 			@Override
@@ -25,10 +25,14 @@ public class 단속카메라 {
         for (int i = 0; i < routes.length; i++) {
 			pq.add(new Car(routes[i][0],routes[i][1]));
 		}
+        // 가장 왼쪽에 있는 나간 지점에 카메라 설치
         int pivot = pq.poll().end;
+        int answer = 1;
         while(!pq.isEmpty()) {
         	Car car = pq.poll();
+        	// 현재 설치된 카메라 중 가장 오른쪽에 있는 지점보다 더 오른쪽 지점에서 들어 차량 검색
         	if(car.start>pivot) {
+        		// 그 차량의 나간 지점에 카메라 설치
         		pivot= car.end;
         		answer++;
         	}
