@@ -43,8 +43,10 @@ public class Main_19238 {
 			q.add(p);
 			boolean[][] v = new boolean[N][N];
 			v[p.y][p.x] = true;
+			// 승객을 입력 받을 때 그 승객의 도착 위치까지 최단 거리를 미리 구함
 			while (!q.isEmpty()) {
 				Point point = q.poll();
+				// 도착 위치에 도달하면 최단 거리 저장
 				if (point.y == passengers[i].y && point.x == passengers[i].x) {
 					passengers[i].len = point.cnt;
 					break;
@@ -60,43 +62,51 @@ public class Main_19238 {
 					}
 				}
 			}
-			if(passengers[i].len==0) {
+			// 최단 거리가 0일 경우 승객이 도착 지점까지 도달하지 못하는 경우
+			if (passengers[i].len == 0) {
 				System.out.println(-1);
 				return;
 			}
 		}
+		// 승객 수만큼 운전을 해야함
 		for (int k = 1; k < passengers.length; k++) {
+			// 최단 거리 승객이 중복일 시 행 우선 그리고 열 우선으로 선택해야기 때문
 			PriorityQueue<Point> q = new PriorityQueue<>(new Comparator<Point>() {
 				@Override
 				public int compare(Point o1, Point o2) {
-					if(o1.cnt>o2.cnt) {
+					if (o1.cnt > o2.cnt) {
 						return 3;
-					}else if(o1.cnt==o2.cnt){
-						if(o1.y>o2.y) {
+					} else if (o1.cnt == o2.cnt) {
+						if (o1.y > o2.y) {
 							return 2;
-						}else if(o1.y==o2.y) {
-							if(o1.x>o2.x) {
+						} else if (o1.y == o2.y) {
+							if (o1.x > o2.x) {
 								return 1;
-							}else {
+							} else {
 								return -1;
 							}
-						}else {
+						} else {
 							return -2;
 						}
-					}else {
+					} else {
 						return -3;
 					}
 				}
 			});
 			boolean[][] v = new boolean[N][N];
-			q.add(new Point(taxi.y,taxi.x,0));//조심
+			q.add(new Point(taxi.y, taxi.x, 0));
 			v[taxi.y][taxi.x] = true;
 			int move = 0;
+			// 현재 택시에서 최단 거리에 있는 승객 탐색
 			while (!q.isEmpty()) {
 				Point p = q.poll();
+				// 승객을 탐색 시
 				if (map[p.y][p.x] > 0) {
-					fuel -= (p.cnt+passengers[map[p.y][p.x]].len);
-					move = passengers[map[p.y][p.x]].len*2;
+					// 현재 택시의 위치에서 승객까지 거리와 승객 위치에서 도착 위치까지 연료 빼기
+					fuel -= (p.cnt + passengers[map[p.y][p.x]].len);
+					// 만약 승객이 도착 지점에 도달 시 받는 연료량
+					move = passengers[map[p.y][p.x]].len * 2;
+					// 택시 위치를 도착 위치로
 					taxi.y = passengers[map[p.y][p.x]].y;
 					taxi.x = passengers[map[p.y][p.x]].x;
 					map[p.y][p.x] = 0;
@@ -113,18 +123,21 @@ public class Main_19238 {
 					}
 				}
 			}
-			if (fuel < 0 || move==0) {
-				answer= -1;
+			// 택시의 연료가 음수이거나 택시가 승객을 찾을 수 없을 때
+			if (fuel < 0 || move == 0) {
+				answer = -1;
 				break;
-			}else {
-				fuel +=move;
+			} else {
+				// 승객을 태우고 도착 지점까지 갈 경우 연료 추가
+				fuel += move;
 			}
 		}
-		if(answer!=-1) {
+		if (answer != -1) {
 			answer = fuel;
 		}
 		System.out.println(answer);
 	}
+
 	// 승객 정보
 	static class Passenger {
 		// 승객의 도착 위치
@@ -134,8 +147,8 @@ public class Main_19238 {
 		int len;
 
 		Passenger(int y, int x) {
-			this.y=y;
-			this.x=x;
+			this.y = y;
+			this.x = x;
 			this.len = 0;
 		}
 	}
