@@ -8,7 +8,7 @@ public class 리틀프렌즈사천성 {
 		// TODO Auto-generated method stub
 		int m =3;
 		int n = 3;
-		String[] board = {"DBF", "G*F", "GDB"};
+		String[] board = {"DBF", "G*F", "GDB"};//예외 사항
 		System.out.println(solution(m, n, board));
 	}
 	static public String solution(int m, int n, String[] board) {
