@@ -11,7 +11,7 @@ public class 도둑질 {
         int[][] arr = new int[money.length][2];
         arr[0][0] = money[0];
         arr[0][1] = money[0];
-        arr[1][0] =	0;
+        arr[1][0] =	money[0];
         arr[1][1] = money[0];
         for (int i = 2; i < money.length-1; i++) {
 			arr[i][0] = arr[i-1][1]+money[i];
