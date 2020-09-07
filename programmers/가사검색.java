@@ -1,6 +1,5 @@
 package programmers;
 import java.util.HashMap;
-import java.util.Iterator;
 public class 가사검색 {
 
 	public static void main(String[] args) {
