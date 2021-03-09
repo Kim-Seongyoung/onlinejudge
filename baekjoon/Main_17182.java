@@ -39,12 +39,9 @@ public class Main_17182 {
 				return o1.cost-o2.cost;
 			}
 		});
-		int count =0;
 		Edge e;
-
 		boolean[] v = new boolean[N];
 		for (int i = 0; i < N; i++) {
-			count =1;
 			node[i][i].cost=0;
 			for (int j = 0; j < node[i][i].edge.size(); j++) {
 				pq.add(node[i][i].edge.get(j));
