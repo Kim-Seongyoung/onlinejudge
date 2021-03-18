@@ -39,5 +39,4 @@ public class Main_13335 {
 			time++;
 		}
 	}
-
 }
